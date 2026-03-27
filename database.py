@@ -5,7 +5,7 @@ c = conn.cursor()
 
 c.execute("""
 CREATE TABLE IF NOT EXISTS Customers (
-    id_customer INTEGER PRIMARY KEY AUTO_INCREMENT,
+    id_customer INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL,
     phone TEXT,
     email TEXT UNIQUE,
@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS Customers (
 
 c.execute("""
 CREATE TABLE IF NOT EXISTS Shipments (
-    id_shipment INTEGER PRIMARY KEY AUTO_INCREMENT,
+    id_shipment INTEGER PRIMARY KEY AUTOINCREMENT,
     order_number TEXT NOT NULL,
     id_sender INTEGER,
     id_receiver INTEGER,
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS Shipments (
 
 c.execute("""
 CREATE TABLE IF NOT EXISTS Drivers (
-    id_driver INTEGER PRIMARY KEY AUTO_INCREMENT,
+    id_driver INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL,
     license_number TEXT UNIQUE,
     phone TEXT,
@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS Drivers (
 
 c.execute("""
 CREATE TABLE IF NOT EXISTS Vehicles (
-    id_vehicle INTEGER PRIMARY KEY AUTO_INCREMENT,
+    id_vehicle INTEGER PRIMARY KEY AUTOINCREMENT,
     type TEXT,
     capacity INTEGER,
     status TEXT
@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS Vehicles (
 
 c.execute("""
 CREATE TABLE IF NOT EXISTS Warehouses (
-    id_warehouse INTEGER PRIMARY KEY AUTO_INCREMENT,
+    id_warehouse INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT,
     location TEXT
 )
@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS Warehouses (
 
 c.execute("""
 CREATE TABLE IF NOT EXISTS Inventory (
-    id_inventory INTEGER PRIMARY KEY AUTO_INCREMENT,
+    id_inventory INTEGER PRIMARY KEY AUTOINCREMENT,
     id_warehouse INTEGER,
     item_name TEXT,
     quantity INTEGER,
@@ -69,7 +69,7 @@ CREATE TABLE IF NOT EXISTS Inventory (
 
 c.execute("""
 CREATE TABLE IF NOT EXISTS Assignments (
-    id_assignment INTEGER PRIMARY KEY AUTO_INCREMENT,
+    id_assignment INTEGER PRIMARY KEY AUTOINCREMENT,
     id_shipment INTEGER,
     id_driver INTEGER,
     id_vehicle INTEGER,
@@ -93,7 +93,7 @@ CREATE TABLE IF NOT EXISTS Incidents (
 
 c.execute("""
 CREATE TABLE IF NOT EXISTS Users (
-    id_user INTEGER PRIMARY KEY AUTO_INCREMENT,
+    id_user INTEGER PRIMARY KEY AUTOINCREMENT,
     username TEXT UNIQUE,
     password_hash TEXT,
     role TEXT
