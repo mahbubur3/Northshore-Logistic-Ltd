@@ -22,9 +22,9 @@ def add_shipment(order_number, id_sender, id_receiver, item_description, status,
 
     cursor.execute("""
     INSERT INTO Shipments 
-    (order_number, sender_id, receiver_id, item_description, status, cost, payment_status)
+    (order_number, id_sender, id_receiver, item_description, status, cost, payment_status)
     VALUES (?, ?, ?, ?, ?, ?, ?)
-    """, (order_number, sender_id, receiver_id, item_description, status, cost, payment_status))
+    """, (order_number, id_sender, id_receiver, item_description, status, cost, payment_status))
 
     conn.commit()
     conn.close()
