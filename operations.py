@@ -30,6 +30,32 @@ def add_shipment(order_number, id_sender, id_receiver, item_description, status,
     conn.close()
 
 
+def add_driver(name, license_number, phone, shift):
+    conn = connect()
+    cursor = conn.cursor()
+
+    cursor.execute("""
+    INSERT INTO Drivers (name, license_number, phone, shift)
+    VALUES (?, ?, ?, ?)
+    """, (name, license_number, phone, shift))
+
+    conn.commit()
+    conn.close()
+
+
+def add_vehicle(type, capacity, status):
+    conn = connect()
+    cursor = conn.cursor()
+
+    cursor.execute("""
+    INSERT INTO Vehicles (type, capacity, status)
+    VALUES (?, ?, ?)
+    """, (type, capacity, status))
+
+    conn.commit()
+    conn.close()
+
+
 def assign_driver(id_shipment, id_driver, id_vehicle, route_details):
     conn = connect()
     cursor = conn.cursor()
