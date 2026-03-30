@@ -63,7 +63,7 @@ def update_shipment_status(id_shipment, new_status):
     cursor.execute("""
     UPDATE Shipments
     SET status = ?
-    WHERE shipment_id = ?
+    WHERE id_shipment = ?
     """, (new_status, id_shipment))
 
     conn.commit()
