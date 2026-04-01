@@ -1,4 +1,5 @@
 import sqlite3
+import hashlib
 
 def connect():
     return sqlite3.connect("northshore.db")
@@ -109,3 +110,41 @@ def add_incident(id_shipment, description, date_reported, status):
     conn.close()
 
 
+def hash_password(password):
+    return hashlib.sha256(password.encode()).hexdigest()
+
+
+def add_user(username, password, role):
+    conn = connect()
+    cursor = conn.cursor()
+
+    hashed_pw = hash_password(password)
+
+    cursor.execute("""
+    INSERT INTO Users (username, password_hash, role)
+    VALUES (?, ?, ?)
+    """, (username, hashed_pw, role))
+
+    conn.commit()
+    conn.close()
+    print("User created!")
+
+
+def login(username, password):
+    conn = connect()
+    cursor = conn.cursor()
+
+    hashed_pw = hash_password(password)
+
+    cursor.execute("""
+    SELECT role FROM Users
+    WHERE username = ? AND password_hash = ?
+    """, (username, hashed_pw))
+
+    result = cursor.fetchone()
+    conn.close()
+
+    if result:
+        return result[0]
+    else:
+        return None
